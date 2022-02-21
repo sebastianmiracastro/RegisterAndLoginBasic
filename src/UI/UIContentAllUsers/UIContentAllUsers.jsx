@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react'
+import {Table, TableContainer, TableHead, TableCell, TableBody, TableRow} from '@material-ui/core';
 
 export const UIContentAllUsers = () => {
 
@@ -20,15 +21,7 @@ export const UIContentAllUsers = () => {
 
     return (
         <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>UserName</th>
-                        <th>Password</th>
-                        <th>Name</th>
-                    </tr>
-                </thead>
-            </table>
+            
         </div>
     )
 }
