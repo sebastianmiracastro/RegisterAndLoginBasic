@@ -13,7 +13,7 @@ export const UIContainRegister = () => {
     
     e.preventDefault();
 
-    axios.post('https://backend-edw.herokuapp.com/usuario', {
+    await axios.post('https://backend-edw.herokuapp.com/usuario', {
       username: userName,
       password: password,
       name: name

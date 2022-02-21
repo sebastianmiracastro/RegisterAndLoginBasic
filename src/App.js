@@ -5,6 +5,8 @@ import {
 import './App.css';
 import { UIContainLogin } from "./UI/UIContainLogin/UIContainLogin";
 import { UIContainRegister } from './UI/UIContainRegister/UIContainRegister';
+import { UIContentAllUsers } from "./UI/UIContentAllUsers/UIContentAllUsers";
+
 
 function App() {
   return (
@@ -12,6 +14,7 @@ function App() {
       <Routes>
         <Route path='/' element= { <UIContainRegister /> } />
         <Route path='/LogIn' element= { <UIContainLogin /> } />
+        <Route path='/AllUsers' element= {<UIContentAllUsers /> } />
       </Routes>
     </BrowserRouter>
   );
