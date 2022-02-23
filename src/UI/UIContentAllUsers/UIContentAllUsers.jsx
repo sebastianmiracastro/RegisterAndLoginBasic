@@ -10,6 +10,7 @@ export const UIContentAllUsers = () => {
 
     const GetAllUsers = async () => {
         await axios.get(UrlAllUsers).then(response => {
+            setData(response.data);
             console.log(response.data);
         })
     }
@@ -20,8 +21,27 @@ export const UIContentAllUsers = () => {
 
 
     return (
-        <div>
-            
-        </div>
+        <TableContainer>
+            <Table>
+                <TableHead>
+                    <TableRow>
+                        <TableCell>ID</TableCell>
+                        <TableCell>Username</TableCell>
+                        <TableCell>Password</TableCell>
+                        <TableCell>Name</TableCell>
+                    </TableRow>
+                </TableHead>
+                <TableBody>
+                    {data.map(consola => {
+                        <TableRow>
+                            <TableCell>{consola.id}</TableCell>
+                            <TableCell>{consola.username}</TableCell>
+                            <TableCell>{consola.password}</TableCell>
+                            <TableCell>{consola.name}</TableCell>
+                        </TableRow>
+                    })}
+                </TableBody>
+            </Table>
+        </TableContainer>
     )
 }
