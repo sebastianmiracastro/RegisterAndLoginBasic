@@ -1,47 +1,40 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import {Table, TableContainer, TableHead, TableCell, TableBody, TableRow} from '@material-ui/core';
 
 export const UIContentAllUsers = () => {
 
     const UrlAllUsers = 'https://backend-edw.herokuapp.com/usuarios';
 
-    const [data, setData] = useState([]);
-
-    const GetAllUsers = async () => {
-        await axios.get(UrlAllUsers).then(response => {
-            setData(response.data);
-            console.log(response.data);
-        })
+    const GetUsers = async () => {
+        try{
+            const res = await axios({
+                url: `${UrlAllUsers}`,
+                method: 'GET'
+            })
+            return res;
+        } catch (e) {
+            console.log(e);
+        }
     }
+    
+    const [users, setUsers] = useState([])
 
-    useEffect(async() => {
-        await GetAllUsers();
-    },[])
+    useEffect( () => {
+        async function loadUsers() {
+            const response = await GetUsers();
 
+            if (response.status === 200) {
+                setUsers(response.data)
+                console.log(response.data);
+            }
+        } 
+        loadUsers()
+    }, [])
 
     return (
-        <TableContainer>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        <TableCell>ID</TableCell>
-                        <TableCell>Username</TableCell>
-                        <TableCell>Password</TableCell>
-                        <TableCell>Name</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {data.map(consola => {
-                        <TableRow>
-                            <TableCell>{consola.id}</TableCell>
-                            <TableCell>{consola.username}</TableCell>
-                            <TableCell>{consola.password}</TableCell>
-                            <TableCell>{consola.name}</TableCell>
-                        </TableRow>
-                    })}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <div>
+            <h1>Users Lists</h1>
+        </div>
     )
 }
