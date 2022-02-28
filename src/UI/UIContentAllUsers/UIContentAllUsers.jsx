@@ -22,15 +22,28 @@ export const UIContentAllUsers = () => {
 
     return (
         <div>
-            <h1>Users Lists</h1>
-            {users.map(res => (
-                <>
-                <h4>{res[0]}</h4>
-                <h4>{res[1]}</h4>
-                <h4>{res[2]}</h4>
-                <h4>{res[3]}</h4>
-                </>
-            ))}
+            <TableContainer>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>ID</TableCell>
+                            <TableCell>Username</TableCell>
+                            <TableCell>Password</TableCell>
+                            <TableCell>Name</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {users.map(res => (
+                            <TableRow>
+                                <TableCell>{res[0]}</TableCell>
+                                <TableCell>{res[1]}</TableCell>
+                                <TableCell>{res[2]}</TableCell>
+                                <TableCell>{res[3]}</TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     )
 }

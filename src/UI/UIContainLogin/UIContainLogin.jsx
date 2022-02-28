@@ -17,7 +17,17 @@ export const UIContainLogin = () => {
       "username": username,
       "password": password
     })
-    .then(response => console.log(response))
+    .then(response => {
+      if(response.data.Message === "Credenciales Invalidas"){
+        alert("Ojo Con eso manito, revise la contraseña")
+      }
+      else{
+        alert("Bienvenido")
+        window.location = '/AllUsers'
+      }
+    }).catch (response => {
+      console.log(response)
+    })
   }
 
   return (
