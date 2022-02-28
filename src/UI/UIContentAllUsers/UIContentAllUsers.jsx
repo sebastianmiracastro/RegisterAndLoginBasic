@@ -6,35 +6,31 @@ export const UIContentAllUsers = () => {
 
     const UrlAllUsers = 'https://backend-edw.herokuapp.com/usuarios';
 
-    const GetUsers = async () => {
-        try{
-            const res = await axios({
-                url: `${UrlAllUsers}`,
-                method: 'GET'
-            })
-            return res;
-        } catch (e) {
+    const [users, setUsers] = useState([]);
+
+    const GetUsers = () => {
+        axios.get(UrlAllUsers).then(function(res) {
+            setUsers(res.data);
+        }).catch(function (e){
             console.log(e);
-        }
+        })
     }
-    
-    const [users, setUsers] = useState([])
 
     useEffect( () => {
-        async function loadUsers() {
-            const response = await GetUsers();
-
-            if (response.status === 200) {
-                setUsers(response.data)
-                console.log(response.data);
-            }
-        } 
-        loadUsers()
-    }, [])
+        GetUsers('')
+    },[])
 
     return (
         <div>
             <h1>Users Lists</h1>
+            {users.map(res => (
+                <>
+                <h4>{res[0]}</h4>
+                <h4>{res[1]}</h4>
+                <h4>{res[2]}</h4>
+                <h4>{res[3]}</h4>
+                </>
+            ))}
         </div>
     )
 }
